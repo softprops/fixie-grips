@@ -25,7 +25,7 @@ trait ScalaHelpers {
         IfHelper.INSTANCE(obj, options)
     }
 
-  protected def eachNamed(
+  def eachNamed(
     named: Iterable[(String, _)], options: Options): CharSequence = {
     val sb = new StringBuilder()
     if (named.isEmpty) sb.append(options.inverse()) else {
