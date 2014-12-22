@@ -5,14 +5,14 @@ import com.github.jknack.handlebars.helper.{ EachHelper, IfHelper }
 import scala.collection.Iterable
 
 /** scala specific handlebar helpers */
-trait ScalaHelpers {
-
+trait ScalaHelpers {  
+  
   /** overriding default `each` helper to support scala iterable things */
   def each(obj: Object, options: Options): CharSequence =
     obj match {
       case  it: Iterable[_] =>
         eachIterable(it, options)
-      case _ =>
+      case e =>
         EachHelper.INSTANCE(obj, options)
     }
 
@@ -26,7 +26,7 @@ trait ScalaHelpers {
     }
 
   protected def eachNamed(
-    named: Iterable[(String, _)], options: Options): String = {
+    named: Iterable[(String, _)], options: Options): CharSequence = {
     val sb = new StringBuilder()
     if (named.isEmpty) sb.append(options.inverse()) else {
       val parent = options.context
@@ -38,11 +38,11 @@ trait ScalaHelpers {
         ctx.destroy()
       }
     }
-    sb.toString
+    sb
   }
 
   protected def eachIterable(
-    it: Iterable[_], options: Options): String = {
+    it: Iterable[_], options: Options): CharSequence = {
     val sb = new StringBuilder()
     if (it.isEmpty) sb.append(options.inverse()) else {
       val parent = options.context
@@ -62,6 +62,11 @@ trait ScalaHelpers {
         }
       append(0, it.iterator)
     }
-    sb.toString()
+    sb
   }
+
+  /** shim to avoid https://github.com/jknack/handlebars.java/blob/master/handlebars/src/main/java/com/github/jknack/handlebars/helper/DefaultHelperRegistry.java#L211-L212. this helper isn't really helpful but it works */
+  def <^> = "<^>"
 }
+
+object ScalaHelpers extends ScalaHelpers
