@@ -17,5 +17,9 @@ class ScalaHelpersSpec extends FunSpec {
       val template = handlebars.compileInline("{{#each foo}}{{.}} {{/each}}")
       assert(template(newContext(Map("foo" -> Seq("a", "b")))) === "a b ")
     }
+    it ("should support #if") {
+      val template = handlebars.compileInline("{{#if foo}}yep{{/if}}")
+      assert(template(newContext(Map("foo" -> Seq("a", "b")))) === "yep")
+    }
   }
 }
