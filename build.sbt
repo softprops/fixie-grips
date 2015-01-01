@@ -1,14 +1,19 @@
-organization := "me.lessis"
+organization in ThisBuild := "me.lessis"
 
-name := "fixie-grips"
+version in ThisBuild := "0.1.0-SNAPSHOT"
 
-version := "0.1.0-SNAPSHOT"
+crossScalaVersions in ThisBuild := Seq("2.10.4", "2.11.4")
 
-crossScalaVersions := Seq("2.10.4", "2.11.4")
+scalaVersion in ThisBuild := crossScalaVersions.value.last
 
-scalaVersion := crossScalaVersions.value.last
+publishArtifact := false
 
-libraryDependencies ++= Seq(
-  "org.scalatest" %% "scalatest" % "2.2.1" % "test",
-  "com.github.jknack" % "handlebars" % "1.3.2", 
-  "org.json4s" %% "json4s-ast" % "3.2.11")
+publish := {}
+
+libraryDependencies in ThisBuild += "org.scalatest" %% "scalatest" % "2.2.1" % "test"
+
+lazy val fixiegrips = project.in(file(".")).aggregate(`fixie-grips-core`, `fixie-grips-json4s`)
+
+lazy val `fixie-grips-core` = project
+
+lazy val `fixie-grips-json4s` = project.dependsOn(`fixie-grips-core`)
