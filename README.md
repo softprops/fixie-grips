@@ -17,9 +17,8 @@ Create a new handlebars template processor and a simple template, specified as a
 
 ```scala
 import com.github.jknack.handlebars.Handlebars
-import com.github.jknack.handlebars.io.FileTemplateLoader
 
-val handlebars = new HandleBars(new FileTemplateLoader(""))
+val handlebars = new HandleBars()
 val template = handlebars.compileInline("Hello {{foo}}.")
 ```
 
@@ -43,14 +42,33 @@ Some of the default helpers are `if` and `each` with provide conditional and ite
 To make handlebars.java aware of things that can be iterated over, plug in `fixiegrips.ScalaHelpers` to the handlebars `registerHelpers` interface.
 
 ```scala
-import com.github.jknack.handlebars.Context
+import com.github.jknack.handlebars.{ Context, Handlebars }
 import fixiegrips.{ ScalaHelpers, ScalaResolver }
-val handlebars = new Handlebars(new FileTemplateLoader("")).registerHelpers(ScalaHelpers)
+
+val handlebars = new Handlebars().registerHelpers(ScalaHelpers)
 def context(obj: Object) =
   Context.newBuilder(obj).resolver(ScalaResolver).build
 val template = handlebars.compileInline("{{#each foo}}{{.}} {{/each}}")
 template(context(Map("foo" -> Seq("a", "b")))) // a b
 ```
 
+### json4s
+
+
+This library provides a module for making handlebars.java also intelligent about json4s, a defactor standard for json processing in scala, types.
+
+```scala
+import com.github.jknack.handlebars.{ Context, Handlebars }
+import org.json4s.JsonAST._
+import org.json4s.JsonDSL._
+
+val handlebars = new Handlebars(new FileTemplateLoader(""))
+def context(obj: Object) =
+  Context.newBuilder(obj).resolver(Json4sResolver).build
+
+val json = ("foo" -> "bar") ~ ("baz" -> "boom")
+val template = handlebars.compileInline("Hello {{foo}}.")
+template(context(json)) // Hello bar.
+```
 
 Doug Tangren (softprops) 2014

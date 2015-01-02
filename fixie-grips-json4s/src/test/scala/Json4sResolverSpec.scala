@@ -1,15 +1,12 @@
 package fixiegrips
 
-import com.github.jknack.handlebars.{
-  Context, Handlebars, Template => HandlebarsTemplate, ValueResolver
-}
-import com.github.jknack.handlebars.io.FileTemplateLoader
+import com.github.jknack.handlebars.{ Context, Handlebars }
 import org.scalatest.FunSpec
 import org.json4s.JsonAST._
 import org.json4s.JsonDSL._
 
 class Json4sResolverSpec extends FunSpec {
-  val handlebars = new Handlebars(new FileTemplateLoader(""))
+  val handlebars = new Handlebars()
   def newContext(obj: Object) =
     Context.newBuilder(obj).resolver(Json4sResolver).build()
 
