@@ -8,3 +8,6 @@ scala:
   - 2.11.1
 jdk:
   - openjdk6
+cache:
+  directories:
+    - $HOME/.m2
