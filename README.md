@@ -1,5 +1,7 @@
 # fixie-grips
 
+[![Build Status](https://travis-ci.org/softprops/fixie-grips.svg)](https://travis-ci.org/softprops/fixie-grips)
+
 > equips your [handlebars](https://github.com/jknack/handlebars.java) templates with scala hand grips
 
 # usage
