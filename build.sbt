@@ -12,7 +12,7 @@ publish := {}
 
 libraryDependencies in ThisBuild += "org.scalatest" %% "scalatest" % "2.2.1" % "test"
 
-lazy val fixiegrips = project.in(file(".")).aggregate(`fixie-grips-core`, `fixie-grips-json4s`)
+lazy val `fixie-grips` = project.in(file(".")).aggregate(`fixie-grips-core`, `fixie-grips-json4s`)
 
 lazy val `fixie-grips-core` = project
 
