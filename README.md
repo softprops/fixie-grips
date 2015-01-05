@@ -4,18 +4,21 @@
 
 > equips your [handlebars](https://github.com/jknack/handlebars.java) templates with scala hand grips
 
-## usage
+## why handlebars?
 
 [Handlebars](http://handlebarsjs.com/), like its cousin, [Mustache](http://mustache.github.io/) is a minimal templating language. This
-library adds Scala extensions to [handlebars.java](https://github.com/jknack/handlebars.java), a well maintained handlebars implementation
-of handlebars on the JVM.
+library adds Scala extensions to [handlebars.java](https://github.com/jknack/handlebars.java), a well maintained, tested, and _fast_ handlebars implementation of handlebars on the JVM. What's different about handlebars? It's a superset of mustache so every mustache template will also work as a handlebars templateat not extra cost. Handlebars has a number of language bindings so you can share your templates across many runtimes ( front and backends ).
+
+## install
+
+## usage
 
 Handlebars separates template content from data. A template processor will need to be equipped with a way to _resolve_ pieces of data by name.
 Templates define references to names that must be resolvable in a given scope. See [this article](http://jknack.github.io/handlebars.java/stack.html) on context stacks for more information.
 
 Let's walk through some short examples.
 
-Create a new handlebars template processor and a simple template, specified as an inline string.
+Create a new Handlebars template processor and compile a simple template, specified as an inline string.
 
 ```scala
 import com.github.jknack.handlebars.Handlebars
@@ -39,7 +42,7 @@ template(ctx(Map("foo" -> "bar"))) // Hello bar.
 
 Besides resolving values handlebars also defines a pluggable system for defining helper directives.
 
-Some of the default helpers are `if` and `each` with provide conditional and iterative rendering behavior, but they lack the knowledge of scala 
+Some of the default helpers are `if` and `each` with provide conditional and iterative rendering behavior, but they lack the knowledge of Scala 
 collection types.
 
 To make handlebars.java aware of things that can be iterated over in Scala, plug in `fixiegrips.ScalaHelpers` to the handlebars `registerHelpers` interface.
@@ -52,6 +55,7 @@ val handlebars = new Handlebars().registerHelpers(ScalaHelpers)
 def ctx(obj: Object) =
   Context.newBuilder(obj).resolver(ScalaResolver).build
 val template = handlebars.compileInline("{{#each foo}}{{.}} {{/each}}")
+
 template(ctx(Map("foo" -> Seq("a", "b")))) // a b
 ```
 
