@@ -4,7 +4,7 @@
 
 > equips your [handlebars](https://github.com/jknack/handlebars.java) templates with scala hand grips
 
-# usage
+## usage
 
 [Handlebars](http://handlebarsjs.com/), like its cousin, [Mustache](http://mustache.github.io/) is a minimal templating language. This
 library adds Scala extensions to [handlebars.java](https://github.com/jknack/handlebars.java), a well maintained handlebars implementation
@@ -57,7 +57,6 @@ template(ctx(Map("foo" -> Seq("a", "b")))) // a b
 
 ### json4s
 
-
 This library provides a module for making handlebars.java also intelligent about json4s, a defacto standard for JSON processing in Scala, types.
 
 ```scala
@@ -74,4 +73,4 @@ val template = handlebars.compileInline("Hello {{foo}}.")
 template(ctx(json)) // Hello bar.
 ```
 
-Doug Tangren (softprops) 2014
+Doug Tangren (softprops) 2014-2015
