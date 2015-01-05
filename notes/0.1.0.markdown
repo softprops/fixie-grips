@@ -1,1 +1,6 @@
-### initial release
+## initial release
+
+Initial release of a library that adds some well-fitting Scala grips to [handlebars](http://handlebarsjs.com/)[.java](https://github.com/jknack/handlebars.java)
+
+See the project [readme](https://github.com/softprops/fixie-grips#readme) for more information.
+

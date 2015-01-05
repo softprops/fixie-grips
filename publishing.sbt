@@ -11,5 +11,5 @@ pomExtra in ThisBuild := (
       <name>Doug Tangren</name>
       <url>https://github.com/softprops</url>
     </developer>
-    </developers>
-    <url>https://github.com/softprops/{name.value}</url>)
+  </developers>
+  <url>https://github.com/softprops/{name.value}</url>)

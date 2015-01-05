@@ -13,6 +13,28 @@ How does fixie-grips fit in? Handlebars.java is already a friendly is extendable
 
 ## install
 
+Add the following to your ivy resolver chain
+
+```scala
+resolvers += "softprops-maven" at "http://dl.bintray.com/content/softprops/maven"
+```
+
+### core
+
+Add the following to your sbt build definition to add a ScalaResolver and ScalaHelpers to your classpath
+
+```scala
+libraryDependencies += "me.lessis" %% "fixie-grips-core" % "0.1.0"
+```
+
+### json4s
+
+Add the following to your sbt build definition to to add a Json4sResolver to your classpath
+
+```scala
+libraryDependencies += "me.lessis" %% "fixie-grips-json4s" % "0.1.0"
+```
+
 ## usage
 
 Handlebars separates template content from data. A template processor will need to be equipped with a way to _resolve_ pieces of data by name.
