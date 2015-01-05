@@ -9,7 +9,7 @@
 [Handlebars](http://handlebarsjs.com/), like its cousin, [Mustache](http://mustache.github.io/) is a minimal templating language. This
 library adds Scala extensions to [handlebars.java](https://github.com/jknack/handlebars.java), a well maintained, tested, and _fast_ handlebars implementation of handlebars on the JVM. What's different about handlebars? It's a superset of mustache so every mustache template will also work as a handlebars templateat not extra cost. Handlebars has a number of language bindings so you can share your templates across many runtimes ( front and backends ).
 
-How does fixie-grips fit in? Handlebars.java is already a friendly is extendable library. There's little need to wrap it with scala but there is a need to make it aware of Scala types and collections interfaces. This library does just that and only that.
+How does fixie-grips fit in? Handlebars.java is already a friendly and extendable library. There's little need to wrap it with scala but there is a need to make it aware of Scala types and collections interfaces. This library does just that and only that.
 
 ## install
 
